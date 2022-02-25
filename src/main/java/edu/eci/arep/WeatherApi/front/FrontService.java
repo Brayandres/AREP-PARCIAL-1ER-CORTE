@@ -46,16 +46,11 @@ public class FrontService {
 				+ "				if (!(varCity === \"\" || varCity == null)) {\r\n"
 				+ "					const response = await fetch(URL+varCity);\r\n"
 				+ "					const data = await response.json();\r\n"
-				+ "					console.log(\"DATA:\");\r\n"
-				+ "					console.log(data);\r\n"
+				+ "					$(\"#result\").text(data);\r\n"
 				+ "				}\r\n"
 				+ "				else {\r\n"
-				+ "					$(\"#result\").text(\"Ñao Ñao amigao...\");\r\n"
+				+ "					$(\"#result\").text(\"The 'city' field cannot be empty\");\r\n"
 				+ "				}\r\n"
-				+ "			}\r\n"
-				+ "\r\n"
-				+ "			function getCityData() {\r\n"
-				+ "				\r\n"
 				+ "			}\r\n"
 				+ "\r\n"
 				+ "			return {\r\n"
@@ -83,10 +78,46 @@ public class FrontService {
 	}
 	
 	public static String badRequest() {
-		return "";
+		return "<!DOCTYPE html>\r\n"
+				+ "<html>\r\n"
+				+ "<head>\r\n"
+				+ "	<meta charset=\"utf-8\">\r\n"
+				+ "	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
+				+ "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n"
+				+ "	<title>ECI | Weather Service</title>\r\n"
+				+ "	<style type=\"text/css\">\r\n"
+				+ "		body {\r\n"
+				+ "			background-image: radial-gradient(circle, #5b0c6b, #560c6b, #500c6a, #4b0c6a, #450c69);\r\n"
+				+ "		}\r\n"
+				+ "		* {\r\n"
+				+ "			Font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;\r\n"
+				+ "		}\r\n"
+				+ "		html, body {\r\n"
+				+ "			height: 100%;\r\n"
+				+ "			width: 100%;\r\n"
+				+ "			margin: 0%;\r\n"
+				+ "			padding: 0%;\r\n"
+				+ "			font-size: 100%;\r\n"
+				+ "		}\r\n"
+				+ "		.container {\r\n"
+				+ "			text-align: center;\r\n"
+				+ "			width: 100%;\r\n"
+				+ "			color: white;\r\n"
+				+ "		}\r\n"
+				+ "		.field {\r\n"
+				+ "			text-align: center;\r\n"
+				+ "			font-size: 1.5rem;\r\n"
+				+ "		}\r\n"
+				+ "	</style>\r\n"
+				+ "</head>\r\n"
+				+ "<body>\r\n"
+				+ "	<p class=\"container\" style=\"font-size:2rem\">ECI - Weather Service</p>\r\n"
+				+ "	<p class=\"container\" style=\"font-size:1.2rem\">404 - NOT FOUND</p>\r\n"
+				+ "</body>\r\n"
+				+ "</html>";
 	}
 	
 	public static String redirect() {
-		return "";
+		return getHome();
 	}
 }
