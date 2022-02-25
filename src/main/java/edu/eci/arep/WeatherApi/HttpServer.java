@@ -11,7 +11,7 @@ import edu.eci.arep.WeatherApi.front.FrontService;
 
 public class HttpServer {
 
-    public static void main1(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
     	
     	int port = getPort();
         Socket clientSocket = null;
