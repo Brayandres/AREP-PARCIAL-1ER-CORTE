@@ -9,8 +9,19 @@ import java.net.Socket;
 
 import edu.eci.arep.WeatherApi.front.FrontService;
 
+/**
+ * 
+ * @author Brayan Macias
+ *
+ */
 public class HttpServer {
-
+	
+	/**
+	 * Main method, that allow start and run application
+	 * 
+	 * @param args 
+	 * @throws IOException 
+	 */
     public static void main(String[] args) throws IOException {
     	
     	int port = getPort();
@@ -56,7 +67,13 @@ public class HttpServer {
         }
         serverSocket.close();
     }
-
+    
+    /**
+     * Generate the port for the socket connection.
+     * If there are not a defined PORT in Environment, it return a default port.
+     * 
+     * @return Integer that represents the port
+     */
     private static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
@@ -66,23 +83,24 @@ public class HttpServer {
         }
     }
     
+    /**
+     * Once the request is received from the client, the type of request
+     * and the details are generated to know how to process it.
+     * 
+     * @param clientRequest String that carries all data of the user request
+     * @return String indicating the type of request being made.
+     */
     private static String managePetition(String clientRequest) {
     	String responseType = "";
-        System.out.println("-------------------------");
-        System.out.println("REQUEST: \n"+clientRequest);
         String[] solitudeParts = clientRequest.split(" ");
         String method = solitudeParts[0];
-        System.out.println("    -- Method: "+method+".");
         String path = solitudeParts[1];
-        System.out.println("    -- Path: "+path+".");
         if (method.startsWith("GET")) {
         	if (path.startsWith("/clima")) {
-            	System.out.println("--- SE ESTÁ CONSULTANDO LA PÁGINA...");
             	responseType = "clima";
             }
             else if (path.startsWith("/consulta?lugar=")) {
             	String city = (path.split("lugar="))[1];
-            	System.out.println("--- SE ESTÁ CONSULTANDO EL CLIMA DE LA CIUDAD: "+city);
             	responseType = "city "+city;
             }
             else {
@@ -96,8 +114,13 @@ public class HttpServer {
         return responseType;
     }
     
+    /**
+     * Identifies which response should be sent based on the type of request received
+     * 
+     * @param type String indicating the type of resource requested
+     * @return String that contains the HTML page or JSON file that should be shown to client
+     */
     private static String manageResponse(String type) {
-    	System.out.println("#### TYPE:"+type+" ####");
     	String response = "";
     	if (type.startsWith("clima")) {
     		response = ""+
@@ -106,8 +129,6 @@ public class HttpServer {
                 "\r\n"+FrontService.getHome();
     	}
     	else if (type.startsWith("city ")) {
-    		String[] parts = type.split(" ");
-    		System.out.println("  ## Length:"+parts.length);
     		String city = (type.split(" "))[1];
     		response = ""+
         		"HTTP/1.1 200 OK\r\n"+

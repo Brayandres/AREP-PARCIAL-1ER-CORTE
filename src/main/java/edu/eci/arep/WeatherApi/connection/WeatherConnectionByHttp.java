@@ -5,8 +5,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * 
+ * @author Brayan Macias
+ *
+ */
 public class WeatherConnectionByHttp {
-
+	
+	/**
+	 * Method that receive the city to search for get all it's weather information
+	 * 
+	 * @param city String with the name of the city
+	 * @return String containing response in JSON format
+	 */
     public static String getWeatherByCity(String city) {
     	String key = "00237403ed6ea29f616b60642dc5fc0d";
     	StringBuilder response = new StringBuilder();

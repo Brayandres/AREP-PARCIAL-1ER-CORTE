@@ -2,8 +2,17 @@ package edu.eci.arep.WeatherApi.front;
 
 import edu.eci.arep.WeatherApi.connection.WeatherConnectionByHttp;
 
+/**
+ * 
+ * @author Brayan Macias
+ */
 public class FrontService {
 	
+	/**
+	 * Return the HTML WebPage containing the city search service  
+	 * 
+	 * @return String with the code of the HTML webpage
+	 */
 	public static String getHome() {
 		return "<!DOCTYPE html>\r\n"
 				+ "<html>\r\n"
@@ -73,10 +82,21 @@ public class FrontService {
 				+ "</html>";
 	}
 	
+	/**
+	 * Handles the input request when a city is given to search
+	 * 
+	 * @param city
+	 * @return
+	 */
 	public static String getCityData(String city) {
 		return WeatherConnectionByHttp.getWeatherByCity(city);
 	}
 	
+	/**
+	 * When URL path does no exist, it shows 404 custom page
+	 * 
+	 * @return String with the code of the HTML webpage
+	 */
 	public static String badRequest() {
 		return "<!DOCTYPE html>\r\n"
 				+ "<html>\r\n"
@@ -117,6 +137,11 @@ public class FrontService {
 				+ "</html>";
 	}
 	
+	/**
+	 * If you try to make a non-get request, you are redirected to the main page
+	 * 
+	 * @return String with the code of the HTML webpage
+	 */
 	public static String redirect() {
 		return getHome();
 	}
