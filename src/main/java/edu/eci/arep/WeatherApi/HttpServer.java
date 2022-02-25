@@ -43,19 +43,40 @@ public class HttpServer {
             		break;
             	}
             }
-            System.out.println("REQUEST: \n"+clientRequest);
+            if ((clientRequest != null) && !(clientRequest.equals(""))) {
+            	managePetition(clientRequest);
+            }
             in.close();
         	clientSocket.close();
         }
         serverSocket.close();
     }
 
-    public static int getPort() {
+    private static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
         }
         else {
             return 35000;
+        }
+    }
+    
+    private static void managePetition(String clientRequest) {
+        System.out.println("REQUEST: \n"+clientRequest);
+        String[] solitudeParts = clientRequest.split(" ");
+        String method = solitudeParts[0];
+        String path = solitudeParts[1];
+        if (method == "GET") {
+        	if (path.startsWith("/clima")) {
+            	System.out.println("--- SE ESTÁ CONSULTANDO LA PÁGINA...");
+            }
+            else if (path.startsWith("/consulta?lugar=")) {
+            	String city = (path.split("lugar="))[1];
+            	System.out.println("--- SE ESTÁ CONSULTANDO EL CLIMA DE LA CIUDAD "+city);
+            }
+            else {
+            	System.out.println("BAD REQUEST >:v");
+            }
         }
     }
 }
