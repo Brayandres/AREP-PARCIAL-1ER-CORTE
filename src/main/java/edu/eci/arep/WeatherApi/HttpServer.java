@@ -83,7 +83,7 @@ public class HttpServer {
             else if (path.startsWith("/consulta?lugar=")) {
             	String city = (path.split("lugar="))[1];
             	System.out.println("--- SE ESTÁ CONSULTANDO EL CLIMA DE LA CIUDAD: "+city);
-            	responseType = "city."+city;
+            	responseType = "city "+city;
             }
             else {
             	System.out.println("BAD REQUEST >:v");
@@ -97,31 +97,34 @@ public class HttpServer {
     }
     
     private static String manageResponse(String type) {
+    	System.out.println("#### TYPE:"+type+" ####");
     	String response = "";
     	if (type.startsWith("clima")) {
     		response = ""+
     			"HTTP/1.1 200 OK\r\n"+
-                "Content-Type: "+"text/html"+"\r\n"+
-                "\r\n" + FrontService.getHome();
+                "Content-Type: text/html\r\n"+
+                "\r\n"+FrontService.getHome();
     	}
-    	else if (type.startsWith("city.")) {
-    		String city = (type.split("."))[1];
+    	else if (type.startsWith("city ")) {
+    		String[] parts = type.split(" ");
+    		System.out.println("  ## Length:"+parts.length);
+    		String city = (type.split(" "))[1];
     		response = ""+
         		"HTTP/1.1 200 OK\r\n"+
-                "Content-Type: "+"application/json"+"\r\n"+
-                "\r\n" + FrontService.getCityData(city);
+                "Content-Type: application/json\r\n"+
+                "\r\n"+FrontService.getCityData(city);
     	}
     	else if (type.startsWith("bad")) {
     		response = ""+
         		"HTTP/1.1 200 OK\r\n"+
-                "Content-Type: "+"text/html"+"\r\n"+
-                "\r\n" + FrontService.badRequest();
+                "Content-Type: text/html\r\n"+
+                "\r\n"+FrontService.badRequest();
     	}
     	else {
     		response = ""+
         		"HTTP/1.1 200 OK\r\n"+
-                "Content-Type: "+"text/html"+"\r\n"+
-                "\r\n" + FrontService.redirect();
+                "Content-Type: text/html\r\n"+
+                "\r\n"+FrontService.redirect();
     	}
     	return response;
     }
