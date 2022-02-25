@@ -46,7 +46,7 @@ public class FrontService {
 				+ "				if (!(varCity === \"\" || varCity == null)) {\r\n"
 				+ "					const response = await fetch(URL+varCity);\r\n"
 				+ "					const data = await response.json();\r\n"
-				+ "					$(\"#result\").text(data);\r\n"
+				+ "					$(\"#result\").text(JSON.stringify(data));\r\n"
 				+ "				}\r\n"
 				+ "				else {\r\n"
 				+ "					$(\"#result\").text(\"The 'city' field cannot be empty\");\r\n"
