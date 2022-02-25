@@ -62,11 +62,14 @@ public class HttpServer {
     }
     
     private static void managePetition(String clientRequest) {
+        System.out.println("-------------------------");
         System.out.println("REQUEST: \n"+clientRequest);
         String[] solitudeParts = clientRequest.split(" ");
         String method = solitudeParts[0];
+        System.out.println("    -- Method: \n"+method+".");
         String path = solitudeParts[1];
-        if (method == "GET") {
+        System.out.println("    -- Path: \n"+path+".");
+        if (method.startsWith("GET")) {
         	if (path.startsWith("/clima")) {
             	System.out.println("--- SE ESTÁ CONSULTANDO LA PÁGINA...");
             }
