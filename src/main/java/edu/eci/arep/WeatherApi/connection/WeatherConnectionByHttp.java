@@ -8,10 +8,8 @@ import java.net.URL;
 public class WeatherConnectionByHttp {
 
     public static String getWeatherByCity(String city) {
-
-        String key = "00237403ed6ea29f616b60642dc5fc0d";
-
-        StringBuilder response = new StringBuilder();
+    	String key = "00237403ed6ea29f616b60642dc5fc0d";
+    	StringBuilder response = new StringBuilder();
         try {
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+key);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
