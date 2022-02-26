@@ -89,4 +89,4 @@ _Fecha : 25 de febrero del 2022_
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) 
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) 
