@@ -13,7 +13,7 @@ El API de la página debe ser el siguiente:
 El API de su servicio debe ser el siguiente:
 {url del servicio en heroku}/consulta?lugar={ciudad o lugar}
 
-El servicio debe reornar un Json exactamente igual al que retorna el servicio de openweathermap denominado "Current Weather Data". Asegurese que el tipo de retorno sea Json.
+El servicio debe retornar un Json exactamente igual al que retorna el servicio de openweathermap denominado "Current Weather Data". Asegurese que el tipo de retorno sea Json.
 
 ## Manual de usuario
 El siguiente programa tiene la intención de funcionar como un API que brinda servicios de consulta de condiciones climatológicas en distintos lugares alrededor del mundo.
@@ -22,13 +22,13 @@ El API brinda el mismo resultado a través de 2 servicios:
   
   [heroku HTML service](https://arep-test.herokuapp.com/clima)
   
-  ![clima]()
+  ![clima](https://github.com/Brayandres/AREP-PARCIAL-1ER-CORTE/blob/master/img/clima.png?raw=true)
 
 - Devuelve el JSON puro con todos los datos requeridos.
   
   [heroku JSON service](https://arep-test.herokuapp.com/consulta?lugar=bogota)
   
-  ![consulta?lugar=bogota]()
+  ![consulta?lugar=bogota](https://github.com/Brayandres/AREP-PARCIAL-1ER-CORTE/blob/master/img/lugar.jpg?raw=true)
 
 ### Prerrequisitos
 
